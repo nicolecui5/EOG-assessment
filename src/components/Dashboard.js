@@ -49,56 +49,55 @@ class Dashboard extends Component {
   //   }, interval);
   // }
     componentDidMount() {
-      this.props.onLoad();
+      // this.props.onLoad();
+      this.props.onFetch();
     }
     render(){
+
     console.log(this.props);
+    console.log('weather data')
+    console.log(this.props.weather.data.consolidated_weather)
         const { classes } = this.props;
-        return (
-            <Card className={classes.card}>
-            <CardHeader title="Dashboard" />
-            <CardContent>
+    const view = (
+      <Card className={classes.card}>
+      <CardHeader title="Dashboard" />
+      <CardContent>
+          Temperature: {this.props.weather.data.consolidated_weather[0].max_temp}<br />
+          Latitude: {this.props.location.latitude}<br />
+          Longitude: {this.props.location.longitude}<br />
+          Last received: 
+      </CardContent>
+      </Card>
+  );
+
+  return this.props.weather.loading? (<h1>Loading...</h1>): view;
+        // return (
+        //     <Card className={classes.card}>
+        //     <CardHeader title="Dashboard" />
+        //     <CardContent>
                 
-                Temperature: {this.props.weather}<br />
-                Latitude: {this.props.latitude}<br />
-                Longitude: {this.props.longitude}<br />
-                Last received: 
-            </CardContent>
-            </Card>
-        );
+        //         Temperature: {this.props.weather.data.temp}<br />
+        //         Latitude: {this.props.location.latitude}<br />
+        //         Longitude: {this.props.location.longitude}<br />
+        //         Last received: 
+        //     </CardContent>
+        //     </Card>
+        // );
     }
 };
 
-const mapStatestoProps = (state) => {
-  const{
-    loading = this.state.location.loading,
-    latitude = this.state.location.latitude,
-    longitude = this.state.location.longitude,
-    weather = this.state.weather.data.temperature,
-    timestamp = 
-  } 
-  return{
-    loading,
-    latitude,
-    longitude,
-    weather,
-    timestamp
-  };
-  console.log(state);
-}
+const mapStatesToProps = (state) => ({
+  ...state
+});
 
-const mapDispatch = (dispatch) => ({
-    onLoad: () =>
-    dispatch({
-    type:actions.FETCH_LOCATION,
-    
-    // latitude:latitude,
-    // longitude:longitude
-    })
+const mapDispatchToProps = (dispatch) => ({
+    onFetch: () => dispatch({
+      type: actions.FETCH_LOCATION,
+    }),
+    // onLoad: () => dispatch({
+    //   type: actions.FETCH_WEATHER
+    // })
+});
 
-    dispatch({
-    type:actions.FETCH_WEATHER})
 
-  });
-
-export default connect(mapStatestoProps, mapDispatch)(withStyles(styles)(Dashboard));
+export default connect(mapStatesToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));

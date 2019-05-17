@@ -9,15 +9,15 @@ const initialState = {
 
 const startLoading = (state, action) => {
     return { ...state, loading: true };
-  };
+};
 
-const getDroneLocation = (state, action) => {
+const gotDroneLocation = (state, action) => {
 return { ...state, latitude: action.latitude, longitude: action.longitude };
 };
 
 const handlers = {
-    [actions.FETCH_LOCATION] : startLoading,
-    [actions.GET_DRONE_LOCATION] : getDroneLocation
+    [actions.FETCH_WEATHER] : gotDroneLocation,
+    [actions.FETCH_LOCATION]: startLoading
 
 };
 
