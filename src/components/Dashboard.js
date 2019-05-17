@@ -58,31 +58,31 @@ class Dashboard extends Component {
     console.log('weather data')
     console.log(this.props.weather.data.consolidated_weather)
         const { classes } = this.props;
-    const view = (
-      <Card className={classes.card}>
-      <CardHeader title="Dashboard" />
-      <CardContent>
-          Temperature: {this.props.weather.data.consolidated_weather[0].max_temp}<br />
-          Latitude: {this.props.location.latitude}<br />
-          Longitude: {this.props.location.longitude}<br />
-          Last received: 
-      </CardContent>
-      </Card>
-  );
+  //   const view = (
+  //     <Card className={classes.card}>
+  //     <CardHeader title="Dashboard" />
+  //     <CardContent>
+  //         Temperature: {this.props.weather.data.consolidated_weather[0].max_temp}<br />
+  //         Latitude: {this.props.location.latitude}<br />
+  //         Longitude: {this.props.location.longitude}<br />
+  //         Last received: 
+  //     </CardContent>
+  //     </Card>
+  // );
 
-  return this.props.weather.loading? (<h1>Loading...</h1>): view;
-        // return (
-        //     <Card className={classes.card}>
-        //     <CardHeader title="Dashboard" />
-        //     <CardContent>
+  // return this.props.weather.loading? (<h1>Loading...</h1>): view;
+        return (
+            <Card className={classes.card}>
+            <CardHeader title="Dashboard" />
+            <CardContent>
                 
-        //         Temperature: {this.props.weather.data.temp}<br />
-        //         Latitude: {this.props.location.latitude}<br />
-        //         Longitude: {this.props.location.longitude}<br />
-        //         Last received: 
-        //     </CardContent>
-        //     </Card>
-        // );
+                Temperature: {this.props.weather.data.temp}<br />
+                Latitude: {this.props.location.latitude}<br />
+                Longitude: {this.props.location.longitude}<br />
+                Last received: 
+            </CardContent>
+            </Card>
+        );
     }
 };
 
