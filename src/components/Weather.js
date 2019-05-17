@@ -17,6 +17,7 @@ const Chip = withStyles(cardStyles)(ChipRaw);
 
 class Weather extends Component {
   componentDidMount() {
+    console.log(this.props);
     this.props.onLoad();
   }
   render() {
@@ -36,6 +37,7 @@ class Weather extends Component {
 }
 
 const mapState = (state, ownProps) => {
+  console.log(state)
   const {
     loading,
     name,

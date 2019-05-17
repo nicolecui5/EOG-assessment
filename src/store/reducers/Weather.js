@@ -22,6 +22,7 @@ const weatherIDReceived = (state, action) => {
 };
 
 const weatherDataRecevied = (state, action) => {
+  console.log(action);
   const { data } = action;
   if (!data["consolidated_weather"]) return state;
   const weather = data.consolidated_weather[0];
